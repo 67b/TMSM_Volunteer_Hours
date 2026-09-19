@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#102f46">
+  <meta name="description" content="Follow Tuscaloosa Magnet Middle School’s journey to 385 volunteer hours.">
+  <title>TMSM • Every hour counts</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23102f46'/%3E%3Cpath d='m20 7 4 8 9 1-6 7 1 9-8-4-8 4 1-9-6-7 9-1z' fill='%23f3c45e'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <header class="masthead"><div class="school-mark" aria-hidden="true">M<span>★</span></div><div><div id="school-name">Tuscaloosa Magnet Middle School</div><div class="masthead-sub">STUDENT BODY • SERVICE IN ACTION</div></div><span class="year" id="year">2026–27</span></header>
+  <main>
+    <section class="intro"><div><p class="eyebrow">SMALL ACTS. BIG IMPACT.</p><h1>Every hour counts<span>.</span></h1><p class="intro-copy">One school. A whole lot of good.</p></div><div class="goal-stamp"><span aria-hidden="true">✦</span><div><strong id="goal-heading">385 hours</strong><span>OUR SHARED GOAL</span></div></div></section>
+    <div id="loading" role="status">Loading our progress…</div>
+    <div id="error" class="error" role="alert" hidden></div>
+    <div id="dashboard" hidden>
+      <section class="stats" aria-label="Volunteer hour summary">
+        <article class="stat primary"><span class="label">HOURS OF GOOD</span><div class="stat-number" id="completed">—</div><div id="completion">—</div><div class="progress-track"><div id="progress-fill"></div></div></article>
+        <article class="stat"><span class="label">OUR PACE</span><div class="status-text" id="status">—</div><p id="status-note"></p></article>
+        <article class="stat"><span class="label">WEEKLY TARGET</span><div class="stat-number" id="baseline">—</div><p>hours / week<span class="stat-foot">Our original steady pace</span></p></article>
+        <article class="stat"><span class="label" id="required-label">WEEKLY PACE NEEDED</span><div class="stat-number" id="required">—</div><p id="required-note"></p></article>
+      </section>
+      <section class="chart-card" aria-labelledby="chart-heading">
+        <div class="chart-header"><div><p class="eyebrow">THE ROAD TO <span id="chart-goal">385</span></p><h2 id="chart-heading">Look how far we can go.</h2><p id="date-range"></p></div><div class="report-date"><strong id="as-of"></strong><span id="freshness"></span></div></div>
+        <div class="chart-legend"><span><i class="legend-actual"></i>Our progress</span><span><i class="legend-target"></i>On-track target</span><span class="chart-unit">Cumulative volunteer hours</span></div>
+        <div class="chart-wrap" id="chart-wrap"><svg id="chart" viewBox="0 0 1000 350" role="group" aria-labelledby="svg-title svg-description"></svg><div id="tooltip" class="tooltip" role="status" hidden></div></div>
+        <div class="milestones" id="milestones" aria-label="Goal milestones"></div>
+        <p class="chart-note" id="chart-note"></p>
+      </section>
+      <details id="details"><summary><span>Behind the numbers</span><span class="details-action">Show details <span aria-hidden="true">＋</span></span></summary><div class="details-body"><h2>How we measure our progress</h2><p>Each volunteer hour counts equally toward our goal. We adapt earned value management (EVM) to compare completed hours with planned hours. These are schedule measures, not financial results. <a href="https://www.pmi.org/blog/earned-value-management">Read PMI’s formula reference</a>.</p><p id="calculation-context"></p><div class="table-scroll"><table><caption>Formulas and calculations at the latest report</caption><thead><tr><th>Measure</th><th>Formula & calculation</th><th>What it means</th></tr></thead><tbody id="formulas"></tbody></table></div><h3>Weekly reports</h3><p>Totals below are cumulative. Dates between reports are connected on the chart, not additional reports.</p><div class="table-scroll"><table><caption>Reported totals and the target on each report date</caption><thead><tr><th>Date</th><th>Completed hours</th><th>Planned hours</th><th>Difference</th></tr></thead><tbody id="reports"></tbody></table></div></div></details>
+      <footer><span>Big things happen when we all pitch in.</span><span>TMSM VOLUNTEER TRACKER <span aria-hidden="true">✦</span></span></footer>
+    </div>
+    <noscript><p>Please enable JavaScript to view the chart and calculations.</p></noscript>
+  </main>
+</body>
+</html>

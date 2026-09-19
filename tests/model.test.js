@@ -1,0 +1,15 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {day,validateConfig,parseCSV,calculate} from '../model.js';
+const config=validateConfig(JSON.parse(readFileSync(new URL('../config.json',import.meta.url),'utf8')));
+const baseline='date,cumulative_hours\n2026-09-01,0\n';
+const model=(extra='',today='2026-09-19')=>calculate(config,parseCSV(baseline+extra,config),today);
+test('baseline and 35 target intervals including final four days',()=>{const m=model();assert.equal(m.status,'Awaiting first report');assert.equal(m.spi,null);assert.equal(m.duration,242);assert.equal(m.targetPoints.length,36);assert.equal(m.targetPoints.at(-1).hours,385);assert.equal(m.targetPoints.at(-1).day-m.targetPoints.at(-2).day,4);assert.equal(m.stale,true);assert.equal(model('','2026-09-08').stale,false);assert.equal(model('','2027-05-02').stale,false);});
+test('midpoint behind schedule example',()=>{const m=model('2026-12-31,150');assert.equal(m.elapsed,121);assert.equal(m.pv,192.5);assert.equal(m.spi.toFixed(2),'0.78');assert.equal(m.required.toFixed(2),'13.60');assert.equal(m.status,'Behind target');});
+test('on track, ahead, zero progress and goal exceeded',()=>{assert.equal(model('2026-12-31,192.5').status,'On track');assert.equal(model('2026-12-31,220').status,'Ahead of target');assert.equal(model('2026-12-31,0').spi,0);const m=model('2026-12-31,400');assert.equal(m.status,'Goal achieved!');assert.equal(m.ev,400);assert.ok(m.completion>100);assert.equal(m.required,0);});
+test('deadline short and achieved avoid division by zero',()=>{const m=model('2027-05-01,300');assert.equal(m.required,null);assert.equal(m.remaining,85);assert.equal(m.status,'Goal not yet reached');assert.equal(model('2027-05-01,385').required,0);});
+test('missing weeks, unordered rows, decimals, CRLF and BOM',()=>{const rows=parseCSV('\uFEFF'+baseline+'2026-12-31,150.5\r\n2026-09-15,3.25\r\n',config);assert.equal(rows[1].hours,3.25);assert.equal(rows.length,3);assert.equal(calculate(config,rows,'2026-12-31').ev,150.5);});
+test('malformed and invalid reports fail clearly',()=>{for(const csv of ['', 'date,cumulative_hours\n','date,hours\n2026-09-01,0',baseline+'2026-09-01,2',baseline+'2026-09-15,-1',baseline+'2026-09-15,NaN',baseline+'2026-09-15,Infinity',baseline+'2026-09-15,',baseline+'2026-09-15,2,3',baseline+'2026-09-15,5\n2026-09-22,4',baseline+'2027-05-02,12',baseline+'2026-02-30,1',baseline+'09/15/2026,5','date,cumulative_hours\n2026-09-02,0'])assert.throws(()=>parseCSV(csv,config),csv);});
+test('date and configuration validation',()=>{assert.throws(()=>day('2026-02-30'));assert.throws(()=>validateConfig({...config,goalHours:0}));assert.throws(()=>validateConfig({...config,endDate:config.startDate}));assert.throws(()=>validateConfig({...config,schoolName:''}));});
+test('actual repository CSV is valid and contains only baseline',()=>{const rows=parseCSV(readFileSync(new URL('../data/progress.csv',import.meta.url),'utf8'),config);assert.equal(rows.length,1);assert.equal(rows[0].hours,0);});
