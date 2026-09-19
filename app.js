@@ -8,12 +8,12 @@ function cells(parent, values) { const tr = document.createElement('tr'); for(co
 function render(config,rows,m){
   set('school-name',config.schoolName);document.title=`${config.schoolName} • Volunteer hours`;
   set('year',`${config.startDate.slice(0,4)}–${config.endDate.slice(2,4)}`);
-  set('goal-heading',`${config.goalHours} hours`);set('chart-goal',config.goalHours);
+  set('goal-heading',config.goalHours.toLocaleString('en-US'));
   set('completed',number(m.ev));set('completion',`${number(m.completion)}% of our ${number(m.goal)}-hour goal`);
   $('progress-fill').style.width=`${Math.min(m.completion,100)}%`;
   set('status',m.status);$('status').dataset.status=m.achieved || (!m.behind&&!m.awaiting)?'good':m.behind?'behind':'waiting';
   set('status-note',m.achieved?'You did it! Every act of service made a difference.':m.awaiting?'Our starting line is set. The first weekly total is coming soon.':`${number(Math.abs(m.variance))} hours ${m.behind?'behind':'ahead of'} the plan at this report.`);
-  set('baseline',number(m.baseline));set('required-label',m.behind?'REVISED WEEKLY TARGET':'WEEKLY PACE NEEDED');
+  set('required-label',m.behind?'REVISED WEEKLY TARGET':'WEEKLY PACE NEEDED');
   set('required',m.required === null?'—':number(m.required));
   set('required-note',m.achieved?'Goal achieved. Keep the good going!':m.required===null?`Campaign ended ${date(config.endDate)}; ${number(m.remaining)} hours short.`:`hours / week to finish • ${number(m.remaining)} hours to go`);
   set('date-range',`${date(config.startDate)} — ${date(config.endDate)}`);set('as-of',`As of ${date(m.latest.date)}`);
@@ -21,7 +21,6 @@ function render(config,rows,m){
   set('chart-note',m.awaiting?'The dot at zero is our starting baseline, not a weekly report. Add the first cumulative total to start our progress line.':'Our progress ends at the latest report. All pace calculations use that report date, including when an update is overdue.');
   renderChart(rows,m);
   let resizeTimer; window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(()=>renderChart(rows,m),100);});
-  [25,50,75,100].forEach((percent,i)=>{const el=document.createElement('div');el.className=`milestone${m.completion>=percent?' reached':''}`;const icon=document.createElement('span');icon.className='milestone-icon';icon.textContent=m.completion>=percent?'★':['✧','✦','✴','★'][i];icon.setAttribute('aria-hidden','true');const text=document.createElement('div');const title=document.createElement('strong');title.textContent=['A great start','Halfway there','Almost there','We did it!'][i];const small=document.createElement('small');small.textContent=`${percent}% · ${number(m.goal*percent/100)} hrs${m.completion>=percent?' · reached':''}`;text.append(title,small);el.append(icon,text);$('milestones').append(el);});
   set('calculation-context',`As of ${date(m.latest.date)}: ${m.elapsed} elapsed days and ${m.remainingDays} remaining days. Every calendar week counts, including breaks. The final partial week is prorated. Displayed results are rounded; calculations use full precision.`);
   const measures=[
     ['Goal (BAC analogue)',`Goal = ${number(m.goal)} hours`,'The total volunteer hours we aim to complete.'],

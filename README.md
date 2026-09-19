@@ -1,6 +1,6 @@
 # TMSM Volunteer Hours Tracker
 
-A static, accessible volunteer-hours dashboard for Tuscaloosa Magnet Middle School. The campaign runs from **September 1, 2026 to May 1, 2027**, with a **385-hour goal**. No backend, installation, or build step is required to publish.
+A static, accessible volunteer-hours dashboard for Tuscaloosa Magnet School Middle. The campaign runs from **September 1, 2026 to May 1, 2027**, with a **385-hour goal**. No backend, installation, or build step is required to publish.
 
 ## Update the total each week
 

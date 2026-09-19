@@ -4,30 +4,29 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#102f46">
-  <meta name="description" content="Follow Tuscaloosa Magnet Middle School’s journey to 385 volunteer hours.">
+  <meta name="description" content="Follow Tuscaloosa Magnet School Middle’s journey to 385 volunteer hours.">
   <title>TMSM • Every hour counts</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23102f46'/%3E%3Cpath d='m20 7 4 8 9 1-6 7 1 9-8-4-8 4 1-9-6-7 9-1z' fill='%23f3c45e'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./styles.css">
   <script type="module" src="./app.js"></script>
 </head>
 <body>
-  <header class="masthead"><div class="school-mark" aria-hidden="true">M<span>★</span></div><div><div id="school-name">Tuscaloosa Magnet Middle School</div><div class="masthead-sub">STUDENT BODY • SERVICE IN ACTION</div></div><span class="year" id="year">2026–27</span></header>
+  <header class="masthead"><div class="school-mark" aria-hidden="true"><svg fill="#102f46" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" stroke="#102f46" aria-hidden="true"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><g id="Solid"><path d="M46.79248,24.23a4.05389,4.05389,0,0,0-5.689-.14l-7.69872,6.84a5.25608,5.25608,0,0,1,.58993,2.43,5.39055,5.39055,0,0,1-3.4794,5.02l-6.46895,2.43a1.00694,1.00694,0,0,1-1.27975-.59.98322.98322,0,0,1,.57986-1.28l6.46895-2.43A3.38021,3.38021,0,0,0,31.995,33.36,3.45753,3.45753,0,0,0,28.63555,30H9.99866A1.99982,1.99982,0,0,0,7.999,28H3.99966A1.99982,1.99982,0,0,0,2,30V46a1.99986,1.99986,0,0,0,1.99966,2H7.999a1.99986,1.99986,0,0,0,1.99967-2H14.048l1.24979.51A19.61328,19.61328,0,0,0,37.924,40.87l9.10846-11.01A4.20182,4.20182,0,0,0,46.79248,24.23ZM12.99816,44H9.99866V32h2.9995ZM30.41809,2a8.59142,8.59142,0,0,0-5.42194,1.9082A8.59147,8.59147,0,0,0,19.5742,2a8.68822,8.68822,0,0,0-8.66651,8.68945c0,9.14258,13.03,16.85059,13.58463,17.17481a1.00289,1.00289,0,0,0,1.00765,0C26.05456,27.54,39.08461,19.832,39.08461,10.68945A8.68822,8.68822,0,0,0,30.41809,2Zm-1.772,18.6571a.98319.98319,0,0,1-.65022.2229.99554.99554,0,0,1-.65047-1.7423c3.70153-3.1709,5.74025-6.17188,5.74025-8.44825A2.68158,2.68158,0,0,0,30.41809,8a1,1,0,0,1,0-2,4.68337,4.68337,0,0,1,4.66719,4.68945C35.08528,14.3681,31.584,18.13953,28.64605,20.6571Z"></path></g></g></svg></div><div><div id="school-name">Tuscaloosa Magnet School Middle</div><div class="masthead-sub">STUDENT BODY • SERVICE IN ACTION</div></div><span class="year" id="year">2026–27</span></header>
   <main>
-    <section class="intro"><div><p class="eyebrow">SMALL ACTS. BIG IMPACT.</p><h1>Every hour counts<span>.</span></h1><p class="intro-copy">One school. A whole lot of good.</p></div><div class="goal-stamp"><span aria-hidden="true">✦</span><div><strong id="goal-heading">385 hours</strong><span>OUR SHARED GOAL</span></div></div></section>
+    <section class="intro"><div><p class="eyebrow">SMALL ACTS. BIG IMPACT.</p><h1>Every hour counts<span>.</span></h1><p class="intro-copy">One school. A whole lot of good.</p></div></section>
     <div id="loading" role="status">Loading our progress…</div>
     <div id="error" class="error" role="alert" hidden></div>
     <div id="dashboard" hidden>
       <section class="stats" aria-label="Volunteer hour summary">
-        <article class="stat primary"><span class="label">HOURS OF GOOD</span><div class="stat-number" id="completed">—</div><div id="completion">—</div><div class="progress-track"><div id="progress-fill"></div></div></article>
+        <article class="stat primary"><span class="label">COMPLETED HOURS</span><div class="stat-number" id="completed">—</div><div id="completion">—</div><div class="progress-track"><div id="progress-fill"></div></div></article>
+        <article class="stat shared-goal"><span class="label">OUR SHARED GOAL</span><div class="stat-number" id="goal-heading">385</div><p>volunteer hours</p></article>
         <article class="stat"><span class="label">OUR PACE</span><div class="status-text" id="status">—</div><p id="status-note"></p></article>
-        <article class="stat"><span class="label">WEEKLY TARGET</span><div class="stat-number" id="baseline">—</div><p>hours / week<span class="stat-foot">Our original steady pace</span></p></article>
         <article class="stat"><span class="label" id="required-label">WEEKLY PACE NEEDED</span><div class="stat-number" id="required">—</div><p id="required-note"></p></article>
       </section>
       <section class="chart-card" aria-labelledby="chart-heading">
-        <div class="chart-header"><div><p class="eyebrow">THE ROAD TO <span id="chart-goal">385</span></p><h2 id="chart-heading">Look how far we can go.</h2><p id="date-range"></p></div><div class="report-date"><strong id="as-of"></strong><span id="freshness"></span></div></div>
+        <div class="chart-header"><div><h2 id="chart-heading">Progress to goal</h2><p id="date-range"></p></div><div class="report-date"><strong id="as-of"></strong><span id="freshness"></span></div></div>
         <div class="chart-legend"><span><i class="legend-actual"></i>Our progress</span><span><i class="legend-target"></i>On-track target</span><span class="chart-unit">Cumulative volunteer hours</span></div>
         <div class="chart-wrap" id="chart-wrap"><svg id="chart" viewBox="0 0 1000 350" role="group" aria-labelledby="svg-title svg-description"></svg><div id="tooltip" class="tooltip" role="status" hidden></div></div>
-        <div class="milestones" id="milestones" aria-label="Goal milestones"></div>
         <p class="chart-note" id="chart-note"></p>
       </section>
       <details id="details"><summary><span>Behind the numbers</span><span class="details-action">Show details <span aria-hidden="true">＋</span></span></summary><div class="details-body"><h2>How we measure our progress</h2><p>Each volunteer hour counts equally toward our goal. We adapt earned value management (EVM) to compare completed hours with planned hours. These are schedule measures, not financial results. <a href="https://www.pmi.org/blog/earned-value-management">Read PMI’s formula reference</a>.</p><p id="calculation-context"></p><div class="table-scroll"><table><caption>Formulas and calculations at the latest report</caption><thead><tr><th>Measure</th><th>Formula & calculation</th><th>What it means</th></tr></thead><tbody id="formulas"></tbody></table></div><h3>Weekly reports</h3><p>Totals below are cumulative. Dates between reports are connected on the chart, not additional reports.</p><div class="table-scroll"><table><caption>Reported totals and the target on each report date</caption><thead><tr><th>Date</th><th>Completed hours</th><th>Planned hours</th><th>Difference</th></tr></thead><tbody id="reports"></tbody></table></div></div></details>
